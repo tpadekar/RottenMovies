@@ -6,29 +6,32 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.group5.rottenmovies.R;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.group5.rottenmovies.HomeActivity;
+import com.group5.rottenmovies.R;
+import com.novoda.imageloader.core.model.ImageTag;
+import com.novoda.imageloader.core.model.ImageTagFactory;
+
 public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
-	private Activity activity;
+	private Context context;
 	private static LayoutInflater inflater=null;
-    public ImageLoader imageLoader; 
 	List<MovieCardContents> movies = new ArrayList<MovieCardContents>();
 
-	public MovieCardAdapter(Activity a, List<JSONObject> objects) {
+	public MovieCardAdapter(Context context, List<JSONObject> objects) {
 		// TODO Auto-generated constructor stub
-		super(a, R.layout.movie_card, objects);
-		this.activity = a;
-		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		super(context, R.layout.movie_card, objects);
+		this.context = context;
+		inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		for(JSONObject movie : objects ) {
 			
 			MovieCardContents details;
@@ -52,9 +55,22 @@ public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
             vi = inflater.inflate(R.layout.movie_card, parent, false);
         }
 		ImageView poster = (ImageView) vi.findViewById(R.id.moviePoster);
-		//imageLoader.displayImage(this.movies.get(position).getPoster(), poster);
+		
+		ImageTagFactory imgfact = ImageTagFactory.newInstance(125, 175, R.drawable.placeholder);
+		imgfact.setAnimation(android.R.anim.fade_in);
+		
+		ImageTag tag = imgfact.build(this.movies.get(position).getPoster(), this.context);
+		poster.setTag(tag);
+		HomeActivity.getImageManager().getLoader().load(poster);
+		
+		
 		TextView title = (TextView) vi.findViewById(R.id.movieTitle);
 		title.setText(this.movies.get(position).getTitle());
+		
+		RatingBar rating = (RatingBar) vi.findViewById(R.id.movieRating);
+		rating.setMax(5);
+		rating.setRating(this.movies.get(position).getAudienceRating()*5/100);
+		
 		return vi;
 	}
 	

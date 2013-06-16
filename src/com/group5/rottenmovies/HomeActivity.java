@@ -17,20 +17,27 @@ import android.view.Menu;
 import android.widget.LinearLayout;
 
 import com.group5.rottenmovies.uielements.MovieCardAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.novoda.imageloader.core.ImageManager;
+import com.novoda.imageloader.core.LoaderSettings;
+import com.novoda.imageloader.core.LoaderSettings.SettingsBuilder;
+import com.novoda.imageloader.core.cache.LruBitmapCache;
 
 public class HomeActivity extends Activity {
 	
 	private JSONObject inTheaters;
+	public static ImageManager imageManager;
+	
+	public static final ImageManager getImageManager() {
+	    return imageManager;
+	}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
-        ImageLoader.getInstance().init(config);
+        int PERCENTAGE_OF_CACHE = 50;
+        LoaderSettings settings = new SettingsBuilder().withCacheManager(new LruBitmapCache(this, PERCENTAGE_OF_CACHE)).withDisconnectOnEveryCall(true).build(this);
+        imageManager = new ImageManager(this, settings);
         
         // Use the AssetManager for the temporary files stored in assets...
         try {

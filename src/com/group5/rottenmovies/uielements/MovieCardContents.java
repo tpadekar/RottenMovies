@@ -16,7 +16,7 @@ public class MovieCardContents {
 	
 	public MovieCardContents(JSONObject movie) throws JSONException {
 		this.title = movie.getString("title");
-		this.poster = movie.getJSONObject("posters").getString("original");
+		this.poster = movie.getJSONObject("posters").getString("detailed");
 		this.movieID = movie.getString("id");
 		this.year = movie.getInt("year");
 		this.audienceRating = movie.getJSONObject("ratings").getInt("audience_score");
