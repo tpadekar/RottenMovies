@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical" 
+    android:id="@+id/home_layout">
+    
+    <TextView
+     android:id="@+id/carousel_title"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:text="@string/in_theaters"
+     android:textAppearance="?android:attr/textAppearanceMedium" />
+    <HorizontalScrollView 
+        android:id="@+id/intheater_carousel_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+         android:id="@+id/intheater_carousel"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" 
+         android:orientation="horizontal" >
+         
+     </LinearLayout>
+    </HorizontalScrollView>
+    
+    
+</LinearLayout>
