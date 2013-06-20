@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="125dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical"  
+    android:layout_marginRight="5dp" >
 
     <ImageView
         android:id="@+id/moviePoster"
@@ -23,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/movie_title" 
+        android:text="@string/movie_title"
+        android:textSize="18sp" 
         android:maxLines="3"
         android:ellipsize="end"/>
 
