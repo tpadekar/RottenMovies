@@ -25,7 +25,7 @@ import com.novoda.imageloader.core.model.ImageTagFactory;
 public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
 	private Context context;
 	private static LayoutInflater inflater=null;
-	List<MovieCardContents> movies = new ArrayList<MovieCardContents>();
+	List<MovieCardData> movies = new ArrayList<MovieCardData>();
 
 	public MovieCardAdapter(Context context, List<JSONObject> objects) {
 		// TODO Auto-generated constructor stub
@@ -34,9 +34,9 @@ public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
 		inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		for(JSONObject movie : objects ) {
 			
-			MovieCardContents details;
+			MovieCardData details;
 			try {
-				details = new MovieCardContents(movie);
+				details = new MovieCardData(movie);
 				this.movies.add(details);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -56,8 +56,8 @@ public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
         }
 		ImageView poster = (ImageView) vi.findViewById(R.id.moviePoster);
 		
-		ImageTagFactory imgfact = ImageTagFactory.newInstance(125, 175, R.drawable.placeholder);
-		imgfact.setAnimation(android.R.anim.fade_in);
+		ImageTagFactory imgfact = ImageTagFactory.newInstance(125, 175, R.drawable.poster_default);
+		//imgfact.setAnimation(android.R.anim.fade_in);
 		
 		ImageTag tag = imgfact.build(this.movies.get(position).getPoster(), this.context);
 		poster.setTag(tag);

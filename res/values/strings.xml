@@ -5,5 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="movie_title">Movie Title</string>
     <string name="in_theaters">In Theaters</string>
+    <string name="opening">Opening this week</string>
+    <string name="upcoming">Coming Soon</string>
+    <string name="top_dvd_rentals">Top Rentals</string>
+    <string name="new_dvds">DVD Releases</string>
+    <string name="upcoming_dvds">Upcoming DVD Releases</string>
 
 </resources>
