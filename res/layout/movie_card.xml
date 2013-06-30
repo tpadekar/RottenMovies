@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="125dp"
+    android:layout_width="130dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"  
-    android:layout_marginRight="1dp" >
+    android:layout_marginRight="1dp" 
+    android:onClick="showMovieDetails">
 
     <ImageView
         android:id="@+id/moviePoster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:scaleType="centerInside"
+        android:layout_width="115dp"
+        android:layout_height="150dp" 
+        android:scaleType="fitCenter"
         android:layout_gravity="center"
-        android:minHeight="175dp"
+        android:minHeight="125dp"
         android:src="@drawable/poster_default"/>
 
     <RatingBar

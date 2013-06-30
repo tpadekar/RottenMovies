@@ -56,7 +56,7 @@ public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
         }
 		ImageView poster = (ImageView) vi.findViewById(R.id.moviePoster);
 		
-		ImageTagFactory imgfact = ImageTagFactory.newInstance(125, 175, R.drawable.poster_default);
+		ImageTagFactory imgfact = ImageTagFactory.newInstance(context, R.drawable.poster_default);
 		//imgfact.setAnimation(android.R.anim.fade_in);
 		
 		ImageTag tag = imgfact.build(this.movies.get(position).getPoster(), this.context);
@@ -70,6 +70,8 @@ public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
 		RatingBar rating = (RatingBar) vi.findViewById(R.id.movieRating);
 		rating.setMax(5);
 		rating.setRating(this.movies.get(position).getAudienceRating()*5/100);
+		
+		vi.setTag(this.movies.get(position).getMovieID());
 		
 		return vi;
 	}

@@ -10,5 +10,7 @@
     <string name="top_dvd_rentals">Top Rentals</string>
     <string name="new_dvds">DVD Releases</string>
     <string name="upcoming_dvds">Upcoming DVD Releases</string>
+    <string name="title_activity_movie_detail">Movie Details</string>
+    <color name="transcluscent_black">#BB000000</color>
 
 </resources>

@@ -1,14 +1,10 @@
 package com.group5.rottenmovies;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.AssetManager;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,6 +21,10 @@ import com.novoda.imageloader.core.cache.LruBitmapCache;
 
 public class HomeActivity extends Activity {
 
+	public final static String EXTRA_MOVIE_ID = "com.group5.rottenmovies.MOVIE_ID";
+	public final static String EXTRA_MOVIE_NAME = "com.group5.rottenmovies.MOVIE_NAME";
+
+	
 	private JSONObject inTheaters;
 	public static ImageManager imageManager;
 
@@ -52,7 +52,7 @@ public class HomeActivity extends Activity {
 		for (String section : AppConfiguration.SECTIONS) {
 			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View carousel = inflater.inflate(R.layout.card_carousel, null);
-			TomatoesAPIClient.makeBackendCall(section, null,
+			TomatoesAPIClient.getCarouselContents(section, null,
 					new MovieCarouselResponseHandler(this, carousel));
 			TextView title = (TextView) carousel
 					.findViewById(R.id.carousel_title);
@@ -61,24 +61,15 @@ public class HomeActivity extends Activity {
 
 		}
 	}
-
-	public static String convertStreamToString(InputStream is) throws Exception {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-		StringBuilder sb = new StringBuilder();
-		String line = null;
-		while ((line = reader.readLine()) != null) {
-			sb.append(line).append("\n");
-		}
-		return sb.toString();
-	}
-
-	public static String getStringFromFile(AssetManager am, String filePath)
-			throws Exception {
-		InputStream is = am.open(filePath);
-		String ret = convertStreamToString(is);
-		// Make sure you close all streams.
-		is.close();
-		return ret;
+	
+	public void showMovieDetails(View v) {
+		TextView movieName = (TextView) v.findViewById(R.id.movieTitle);
+		
+		Intent intent = new Intent(this, MovieDetailActivity.class);
+		intent.putExtra(EXTRA_MOVIE_ID, (String) v.getTag());
+		intent.putExtra(EXTRA_MOVIE_NAME, movieName.getText());
+		
+		startActivity(intent);
 	}
 
 	@Override

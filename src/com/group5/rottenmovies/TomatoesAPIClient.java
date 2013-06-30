@@ -14,7 +14,7 @@ public class TomatoesAPIClient {
 	
 	private static AsyncHttpClient client = new AsyncHttpClient();
 	
-	public static void makeBackendCall(String section, HashMap<String, String> parameters, AsyncHttpResponseHandler responseHandler) {
+	public static void getCarouselContents(String section, HashMap<String, String> parameters, AsyncHttpResponseHandler responseHandler) {
 		StringBuffer path = new StringBuffer(AppConfiguration.SECTION_URL.get(section));
 		
 		if(parameters != null) {
@@ -25,6 +25,18 @@ public class TomatoesAPIClient {
 			}
 		}
 		Log.d("DEBUG", "Making a backend call for "+section+" : "+path.toString());
+		client.get(path.toString(), responseHandler);
+	}
+	
+	public static void getMovieDetails(String movieId, AsyncHttpResponseHandler responseHandler) {
+		String path = String.format(AppConfiguration.movieDetailsApi, movieId);
+		Log.d("DEBUG", "Getting movie details : "+path.toString());
+		client.get(path.toString(), responseHandler);
+	}
+	
+	public static void getMovieImages(String movieName, AsyncHttpResponseHandler responseHandler) {
+		String path = String.format(AppConfiguration.movieImagesApi, movieName);
+		Log.d("DEBUG", "Getting movie images : "+path.toString());
 		client.get(path.toString(), responseHandler);
 	}
 
