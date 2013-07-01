@@ -9,10 +9,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import com.novoda.imageloader.core.ImageManager;
 import com.novoda.imageloader.core.LoaderSettings;
@@ -79,6 +81,19 @@ public class HomeActivity extends Activity {
 		return true;
 	}
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                // search icon in action bar clicked; go to search activity
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+	
 	/**
 	 * Recursively sets a {@link Typeface} to all {@link TextView}s in a
 	 * {@link ViewGroup}.

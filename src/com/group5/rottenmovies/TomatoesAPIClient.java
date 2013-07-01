@@ -40,4 +40,11 @@ public class TomatoesAPIClient {
 		client.get(path.toString(), responseHandler);
 	}
 
+	public static void getSearchMovies(String movieName, AsyncHttpResponseHandler responseHandler) {
+		String path = String.format(AppConfiguration.movieSearchApi, movieName);
+		Log.d("DEBUG", "Getting search movies : "+path.toString());
+		client.get(path.toString(), responseHandler);
+	}
+	
+
 }

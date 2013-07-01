@@ -14,7 +14,7 @@ public class AppConfiguration {
 	
 	public static final String movieDetailsApi = "http://api.rottentomatoes.com/api/public/v1.0/movies/%s.json?apikey="+ROTTENTOMATOES_KEY;
 	public static final String movieImagesApi = "http://images.search.yahoo.com/images/view?o=js&native=1&b=0&vm=r&n=20&p=%s";
-	
+	public static final String movieSearchApi = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apiKey="+ROTTENTOMATOES_KEY+"&q=%s";
 	static {
 		SECTION_URL.put("in_theaters", "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey="+ROTTENTOMATOES_KEY);
 		SECTION_URL.put("opening", "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/opening.json?apikey="+ROTTENTOMATOES_KEY);
