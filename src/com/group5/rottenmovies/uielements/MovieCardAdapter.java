@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.group5.rottenmovies.HomeActivity;
+import com.group5.rottenmovies.MovieDetailActivity;
 import com.group5.rottenmovies.R;
 import com.novoda.imageloader.core.model.ImageTag;
 import com.novoda.imageloader.core.model.ImageTagFactory;
@@ -26,6 +28,9 @@ public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
 	private Context context;
 	private static LayoutInflater inflater=null;
 	List<MovieCardData> movies = new ArrayList<MovieCardData>();
+	
+	public final static String EXTRA_MOVIE_ID = "com.group5.rottenmovies.MOVIE_ID";
+	public final static String EXTRA_MOVIE_NAME = "com.group5.rottenmovies.MOVIE_NAME";
 
 	public MovieCardAdapter(Context context, List<JSONObject> objects) {
 		// TODO Auto-generated constructor stub
@@ -72,6 +77,21 @@ public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
 		rating.setRating(this.movies.get(position).getAudienceRating()*5/100);
 		
 		vi.setTag(this.movies.get(position).getMovieID());
+		
+		vi.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				TextView movieName = (TextView) v.findViewById(R.id.movieTitle);
+				
+				Intent intent = new Intent(v.getContext(), MovieDetailActivity.class);
+				intent.putExtra(EXTRA_MOVIE_ID, (String) v.getTag());
+				intent.putExtra(EXTRA_MOVIE_NAME, movieName.getText());
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				v.getContext().startActivity(intent);
+				
+			}
+		});
 		
 		return vi;
 	}

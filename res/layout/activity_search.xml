@@ -6,12 +6,13 @@
 
     <EditText
         android:id="@+id/etQuery"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:ems="10"
-        android:hint="@string/hint_search_movie_title" >
+        android:layout_toLeftOf="@+id/btnSearch"
+        android:hint="@string/hint_search_movie_title" 
+        android:maxLines="1">
 
         <requestFocus />
 	</EditText>
@@ -25,14 +26,18 @@
         android:onClick="onMovieSearch"
         android:text="@string/action_search"/>
         
-    <GridLayout
-        android:id="@+id/searchGridLayout"
-        android:layout_width="wrap_content"
+    <HorizontalScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etQuery"
-        android:numColumns="3"
         android:orientation="horizontal" >
-    </GridLayout>
+        <LinearLayout 
+            android:id="@+id/searchGridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            
+        </LinearLayout>
+    </HorizontalScrollView>
     
 
 </RelativeLayout>

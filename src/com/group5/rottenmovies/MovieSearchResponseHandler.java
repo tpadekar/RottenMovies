@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
-import android.widget.GridLayout;
+import android.widget.LinearLayout;
 
 import com.group5.rottenmovies.uielements.MovieCardAdapter;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -51,7 +51,7 @@ public class MovieSearchResponseHandler extends AsyncHttpResponseHandler {
         	} 
         	MovieCardAdapter mc = new MovieCardAdapter(context, list);
         	        	
-        	GridLayout movieGrid = (GridLayout) container.findViewById(R.id.searchGridLayout);
+        	LinearLayout movieGrid = (LinearLayout) container.findViewById(R.id.searchGridLayout);
         	for(int i=0; i < mc.getCount(); i++) {
         		movieGrid.addView(mc.getView(i, null, movieGrid));
         	}

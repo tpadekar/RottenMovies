@@ -30,6 +30,9 @@ import android.widget.Toast;
 
 public class SearchActivity extends Activity {
 	
+	public final static String EXTRA_MOVIE_ID = "com.group5.rottenmovies.MOVIE_ID";
+	public final static String EXTRA_MOVIE_NAME = "com.group5.rottenmovies.MOVIE_NAME";
+	
 	public static ImageManager imageManager;
 	EditText etQuery;
 	//GridView gvResults;
@@ -102,6 +105,16 @@ public class SearchActivity extends Activity {
 			e.printStackTrace();
 		}
     }
+    
+	public void showMovieDetails(View v) {
+		TextView movieName = (TextView) v.findViewById(R.id.movieTitle);
+		
+		Intent intent = new Intent(this, MovieDetailActivity.class);
+		intent.putExtra(EXTRA_MOVIE_ID, (String) v.getTag());
+		intent.putExtra(EXTRA_MOVIE_NAME, movieName.getText());
+		
+		startActivity(intent);
+	}
     
 	/**
 	 * Recursively sets a {@link Typeface} to all {@link TextView}s in a
