@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/btnSearch"
         android:hint="@string/hint_search_movie_title" 
-        android:maxLines="1">
+        android:singleLine="true" >
 
         <requestFocus />
 	</EditText>
@@ -24,13 +24,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:onClick="onMovieSearch"
-        android:text="@string/action_search"/>
+        android:textColor="#000000"
+        android:text="@string/action_search" />
         
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etQuery"
-        android:orientation="horizontal" >
+        android:layout_below="@+id/btnSearch"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp" >
         <LinearLayout 
             android:id="@+id/searchGridLayout"
             android:layout_width="wrap_content"

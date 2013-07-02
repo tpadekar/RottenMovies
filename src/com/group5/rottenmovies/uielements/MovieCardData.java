@@ -10,7 +10,7 @@ public class MovieCardData {
 	private String poster;
 	private String title;
 	private String movieID;
-	private int year;
+	private String year;
 	private int audienceRating;
 	private String description;
 	
@@ -18,7 +18,7 @@ public class MovieCardData {
 		this.title = movie.getString("title");
 		this.poster = movie.getJSONObject("posters").getString("detailed");
 		this.movieID = movie.getString("id");
-		this.year = movie.getInt("year");
+		this.year = movie.getString("year");
 		this.audienceRating = movie.getJSONObject("ratings").getInt("audience_score");
 		this.description = movie.getString("synopsis");
 	}
@@ -41,10 +41,10 @@ public class MovieCardData {
 	public void setMovieID(String movieID) {
 		this.movieID = movieID;
 	}
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	public int getAudienceRating() {

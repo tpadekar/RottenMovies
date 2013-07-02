@@ -34,7 +34,8 @@ public class MovieData {
 	}
 
 	/**
-	 * @param cast the cast to set
+	 * @param cast
+	 *            the cast to set
 	 */
 	public void setCast(ArrayList<MovieCastMember> cast) {
 		this.cast = cast;
@@ -45,42 +46,65 @@ public class MovieData {
 	 * 
 	 */
 	public MovieData(JSONObject movie) throws JSONException {
-		this.title = movie.getString("title");
-		this.poster = movie.getJSONObject("posters").getString("detailed");
-		this.movieID = movie.getString("id");
-		this.year = movie.getInt("year");
-		this.audienceRating = movie.getJSONObject("ratings").getInt(
-				"audience_score");
-		this.description = movie.getString("synopsis");
-		this.mpaaRating = movie.getString("mpaa_rating");
-		this.runtime = movie.getString("runtime");
-		JSONArray genres = movie.getJSONArray("genres");
-		if (genres != null) {
-			int len = genres.length();
-			for (int i = 0; i < len; i++) {
-				this.genres.add(genres.get(i).toString());
+		if (movie.has("title")) {
+			this.title = movie.getString("title");
+		}
+		if (movie.has("posters")) {
+			this.poster = movie.getJSONObject("posters").getString("detailed");
+		}
+
+		if (movie.has("id")) {
+			this.movieID = movie.getString("id");
+		}
+		if (movie.has("year")) {
+			this.year = movie.getInt("year");
+		}
+		if (movie.has("ratings")) {
+			this.audienceRating = movie.getJSONObject("ratings").getInt(
+					"audience_score");
+		}
+		if (movie.has("synopsis")) {
+			this.description = movie.getString("synopsis");
+		}
+		if (movie.has("mpaa_rating")) {
+			this.mpaaRating = movie.getString("mpaa_rating");
+		}
+		if (movie.has("runtime")) {
+			this.runtime = movie.getString("runtime");
+		}
+
+		if (movie.has("genres")) {
+			JSONArray genres = movie.getJSONArray("genres");
+			if (genres != null) {
+				int len = genres.length();
+				for (int i = 0; i < len; i++) {
+					this.genres.add(genres.get(i).toString());
+				}
 			}
 		}
-		
-		if(movie.has("abridged_cast")) {
+
+		if (movie.has("abridged_cast")) {
 			JSONArray castList = movie.getJSONArray("abridged_cast");
 			int len = castList.length();
-			if(len > 0) {
+			if (len > 0) {
 				for (int i = 0; i < len; i++) {
 					JSONObject m = castList.getJSONObject(i);
-					if(m.has("characters")) {
+					if (m.has("characters")) {
 						JSONArray characters = m.getJSONArray("characters");
 						StringBuffer characterNames = new StringBuffer();
-						if(characters != null) {
+						if (characters != null) {
 							int count = characters.length();
-							for(int j = 0; j < count; j++) {
-								characterNames.append(characters.get(j).toString() + "/"); 
+							for (int j = 0; j < count; j++) {
+								characterNames.append(characters.get(j)
+										.toString() + "/");
 							}
-							characterNames.setLength(characterNames.length()-1);
+							characterNames
+									.setLength(characterNames.length() - 1);
 						}
-						cast.add(new MovieCastMember(m.getString("name"), characterNames.toString()));
+						cast.add(new MovieCastMember(m.getString("name"),
+								characterNames.toString()));
 					}
-					
+
 				}
 			}
 		}
@@ -94,7 +118,8 @@ public class MovieData {
 	}
 
 	/**
-	 * @param title the title to set
+	 * @param title
+	 *            the title to set
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -108,7 +133,8 @@ public class MovieData {
 	}
 
 	/**
-	 * @param movieID the movieID to set
+	 * @param movieID
+	 *            the movieID to set
 	 */
 	public void setMovieID(String movieID) {
 		this.movieID = movieID;
@@ -122,7 +148,8 @@ public class MovieData {
 	}
 
 	/**
-	 * @param year the year to set
+	 * @param year
+	 *            the year to set
 	 */
 	public void setYear(int year) {
 		this.year = year;
@@ -136,7 +163,8 @@ public class MovieData {
 	}
 
 	/**
-	 * @param audienceRating the audienceRating to set
+	 * @param audienceRating
+	 *            the audienceRating to set
 	 */
 	public void setAudienceRating(int audienceRating) {
 		this.audienceRating = audienceRating;
@@ -150,7 +178,8 @@ public class MovieData {
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -164,7 +193,8 @@ public class MovieData {
 	}
 
 	/**
-	 * @param mpaaRating the mpaaRating to set
+	 * @param mpaaRating
+	 *            the mpaaRating to set
 	 */
 	public void setMpaaRating(String mpaaRating) {
 		this.mpaaRating = mpaaRating;
@@ -178,7 +208,8 @@ public class MovieData {
 	}
 
 	/**
-	 * @param runtime the runtime to set
+	 * @param runtime
+	 *            the runtime to set
 	 */
 	public void setRuntime(String runtime) {
 		this.runtime = runtime;
@@ -192,7 +223,8 @@ public class MovieData {
 	}
 
 	/**
-	 * @param genres the genres to set
+	 * @param genres
+	 *            the genres to set
 	 */
 	public void setGenres(ArrayList<String> genres) {
 		this.genres = genres;
@@ -206,12 +238,11 @@ public class MovieData {
 	}
 
 	/**
-	 * @param poster the poster to set
+	 * @param poster
+	 *            the poster to set
 	 */
 	public void setPoster(String poster) {
 		this.poster = poster;
 	}
-	
-	
 
 }

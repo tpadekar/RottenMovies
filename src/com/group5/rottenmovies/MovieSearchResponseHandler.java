@@ -52,6 +52,7 @@ public class MovieSearchResponseHandler extends AsyncHttpResponseHandler {
         	MovieCardAdapter mc = new MovieCardAdapter(context, list);
         	        	
         	LinearLayout movieGrid = (LinearLayout) container.findViewById(R.id.searchGridLayout);
+        	movieGrid.removeAllViews();
         	for(int i=0; i < mc.getCount(); i++) {
         		movieGrid.addView(mc.getView(i, null, movieGrid));
         	}

@@ -57,6 +57,8 @@ public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
         if(convertView==null) {
             vi = inflater.inflate(R.layout.movie_card, parent, false);
         }
+        
+        try {
 		ImageView poster = (ImageView) vi.findViewById(R.id.moviePoster);
 		
 		ImageTagFactory imgfact = ImageTagFactory.newInstance(context, R.drawable.poster_default);
@@ -90,6 +92,9 @@ public class MovieCardAdapter extends ArrayAdapter<JSONObject> {
 				
 			}
 		});
+        } catch (Exception e) {
+        	e.getStackTrace();
+        }
 		
 		return vi;
 	}
