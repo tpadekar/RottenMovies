@@ -43,6 +43,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.group5.rottenmovies.HomeActivity" />
         </activity>
+        <activity
+            android:name="com.group5.rottenmovies.ImageDisplayActivity"
+            android:label="@string/title_activity_image_display" >
+        </activity>
+        <activity
+            android:name="com.group5.rottenmovies.ImageSearchActivity"
+            android:label="@string/title_activity_image_search" >
+        </activity>
     </application>
 
 </manifest>

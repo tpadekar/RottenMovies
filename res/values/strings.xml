@@ -11,6 +11,13 @@
     <string name="new_dvds">DVD Releases</string>
     <string name="upcoming_dvds">Upcoming DVD Releases</string>
     <string name="title_activity_movie_detail">Movie Details</string>
+
     <color name="transcluscent_black">#BB000000</color>
+
+    <string name="title_activity_image_display">ImageDisplayActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_image_search">ImageSearchActivity</string>
+    <string name="search">Search</string>
+    <string name="show_more">Show More</string>
 
 </resources>
