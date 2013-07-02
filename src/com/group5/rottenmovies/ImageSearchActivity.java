@@ -43,6 +43,14 @@ public class ImageSearchActivity extends Activity {
 		imageAdapter = new MovieImageArrayAdapter(this, imageResults);
 		gvResults.setAdapter(imageAdapter);
 
+		// Search for movie using intent
+		String movieName = getIntent().getStringExtra("movie_name");
+		if (movieName != null) {
+
+			etQuery.setText(movieName);
+			getImages(movieName, 0, pageSize);
+		}
+
 		gvResults.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
