@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -59,6 +60,21 @@ public class MovieImagesResponseHandler extends AsyncHttpResponseHandler {
 				
 				TextView text = (TextView) v.findViewById(R.id.movie_image_title);
 				text.setText(android.text.Html.fromHtml(images.getText()).toString());
+				
+				v.setOnClickListener(new View.OnClickListener(){
+					
+					@Override
+					public void onClick(View v) {
+						Intent i = new Intent(v.getContext(),
+								ImageDisplayActivity.class);
+						i.putExtra("url", (String) v.getTag());
+						i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						v.getContext().startActivity(i);
+						
+					}
+				});
+				
+				v.setTag(images.getFullImageUrl());
 				
 				container.addView(v);
 			}

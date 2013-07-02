@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@color/transcluscent_black" 
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/loading_details"
@@ -26,7 +26,7 @@
         android:id="@+id/movie_details_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" >
+        android:visibility="visible" >
 
         <RelativeLayout
             android:id="@+id/details_container"
@@ -94,12 +94,25 @@
                     android:id="@+id/images_container">                   
                 </LinearLayout>
             </HorizontalScrollView>
+            <TextView 
+                android:id="@+id/more_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_carousel"
+                android:gravity="right"
+                android:onClick="showMoreImages"
+                android:clickable="true"
+                android:textSize="18sp"
+                android:textColor="#005CBF"
+                android:textStyle="bold|italic"
+                android:paddingRight="10dp"
+                android:text="@string/more_images" />
 
             <LinearLayout
                 android:id="@+id/movie_cast_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/image_carousel" 
+                android:layout_below="@id/more_images" 
                 android:orientation="vertical">
 
             </LinearLayout>

@@ -16,4 +16,11 @@
     <string name="action_search">Search</string>
     <color name="transcluscent_black">#BB000000</color>
 
+    <string name="title_activity_image_display">ImageDisplayActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_image_search">ImageSearchActivity</string>
+    <string name="search">Search</string>
+    <string name="show_more">Show More</string>
+    <string name="more_images">See More Images</string>
+
 </resources>

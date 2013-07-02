@@ -58,6 +58,9 @@ public class MovieDetailsResponseHandler extends AsyncHttpResponseHandler {
 			poster.setTag(tag);
 			HomeActivity.getImageManager().getLoader().load(poster);
 			
+			TextView moreImages = (TextView) container.findViewById(R.id.more_images);
+			moreImages.setTag(movie.getTitle() + " movie");
+			
 			TextView title = (TextView) container.findViewById(R.id.movie_title);
 			title.setText(movie.getTitle() + " (" + movie.getYear() + ")");
 			

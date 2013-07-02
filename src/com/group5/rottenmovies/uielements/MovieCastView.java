@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +41,11 @@ public class MovieCastView {
 			TextView bt = (TextView) v.findViewById(R.id.bottomtext);
 			if(tt != null) {
 				tt.setText(actor.getActorName());
+				tt.setTextColor(Color.BLACK);
 			}
 			if(bt != null) {
 				bt.setText(actor.getCharacter());
+				bt.setTextColor(Color.DKGRAY);
 			}
 		}
 		
