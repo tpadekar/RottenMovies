@@ -28,7 +28,7 @@ public class MovieImage implements Serializable {
 	public MovieImage(JSONObject json) {
 		try {
 			this.fullUrl = json.getString("iurl");
-			this.thumbUrl = json.getString("turl");
+			this.thumbUrl = json.getString("turlL");
 			this.url = json.getString("url");
 		} catch (JSONException e) {
 			this.fullUrl = null;

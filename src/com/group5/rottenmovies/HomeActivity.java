@@ -18,6 +18,7 @@ import com.novoda.imageloader.core.ImageManager;
 import com.novoda.imageloader.core.LoaderSettings;
 import com.novoda.imageloader.core.LoaderSettings.SettingsBuilder;
 import com.novoda.imageloader.core.cache.LruBitmapCache;
+import com.novoda.imageloader.core.model.ImageTag;
 
 public class HomeActivity extends Activity {
 

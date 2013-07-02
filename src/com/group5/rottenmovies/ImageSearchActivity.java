@@ -6,9 +6,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -25,20 +27,25 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class ImageSearchActivity extends Activity {
 
-	EditText etQuery;
 	GridView gvResults;
-	Button btnSearch;
 
-	int page = 0;
-	int pageSize = 12;
+	int page = 1;
+	int pageSize = 24;
 
 	ArrayList<MovieImage> imageResults = new ArrayList<MovieImage>();
 	MovieImageArrayAdapter imageAdapter;
 
-	@Override
+	@SuppressLint("NewApi") @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_image_search);
+		
+		// Make sure we're running on Honeycomb or higher to use ActionBar APIs
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            // Show the Up button in the action bar.
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+		
 		setupViews();
 		imageAdapter = new MovieImageArrayAdapter(this, imageResults);
 		gvResults.setAdapter(imageAdapter);
@@ -46,9 +53,8 @@ public class ImageSearchActivity extends Activity {
 		// Search for movie using intent
 		String movieName = getIntent().getStringExtra("movie_name");
 		if (movieName != null) {
-
-			etQuery.setText(movieName);
 			getImages(movieName, 0, pageSize);
+			gvResults.setTag(movieName);
 		}
 
 		gvResults.setOnItemClickListener(new OnItemClickListener() {
@@ -74,27 +80,15 @@ public class ImageSearchActivity extends Activity {
 
 	private void setupViews() {
 
-		etQuery = (EditText) findViewById(R.id.etQuery);
 		gvResults = (GridView) findViewById(R.id.gvResults);
-		btnSearch = (Button) findViewById(R.id.btnSearch);
-
-	}
-
-	public void onImageSearch(View v) {
-		String query = etQuery.getText().toString();
-		// Toast.makeText(this, "Searching for " + query,
-		// Toast.LENGTH_LONG).show();
-
-		getImages(query, 0, pageSize);
-
 	}
 
 	public void onShowMore(View v) {
-		String query = etQuery.getText().toString();
+		String query = (String) gvResults.getTag();
 		// Toast.makeText(this, "More images for " + query, Toast.LENGTH_LONG)
 		// .show();
 		page = page + 1;
-		getImages(query, 0, pageSize * (page + 1));
+		getImages(query, (page-1)*pageSize, page*pageSize);
 		gvResults.setSelection(page * pageSize);
 
 	}
@@ -113,6 +107,7 @@ public class ImageSearchActivity extends Activity {
 						try {
 							imageJsonResults = response.getJSONArray("results");
 							imageResults.clear();
+							imageAdapter.clear();
 							imageAdapter.addAll(MovieImage
 									.fromJSONArray(imageJsonResults));
 

@@ -7,6 +7,7 @@ public class MovieImageData {
 	
 	private String imageUrl;
 	private String text;
+	private String fullImageUrl;
 	/**
 	 * @return the imageUrl
 	 */
@@ -31,14 +32,22 @@ public class MovieImageData {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public MovieImageData(String imageUrl, String text) {
+	public MovieImageData(String imageUrl, String text, String fullImageUrl) {
 		super();
 		this.imageUrl = imageUrl;
 		this.text = text;
+		this.fullImageUrl = fullImageUrl;
 	}
 	public MovieImageData(JSONObject result) throws JSONException {
 		this.imageUrl = result.getString("turlL").toString();
 		this.text = result.getString("tit");
+		this.fullImageUrl = result.getString("iurl");
+	}
+	public String getFullImageUrl() {
+		return fullImageUrl;
+	}
+	public void setFullImageUrl(String fullImageUrl) {
+		this.fullImageUrl = fullImageUrl;
 	}
 	
 

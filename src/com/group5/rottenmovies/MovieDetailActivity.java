@@ -20,6 +20,7 @@ import com.novoda.imageloader.core.ImageManager;
 import com.novoda.imageloader.core.LoaderSettings;
 import com.novoda.imageloader.core.LoaderSettings.SettingsBuilder;
 import com.novoda.imageloader.core.cache.LruBitmapCache;
+import com.novoda.imageloader.core.model.ImageTag;
 
 @SuppressLint("NewApi") 
 public class MovieDetailActivity extends Activity {
@@ -80,6 +81,21 @@ public class MovieDetailActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.movie_detail, menu);
 		return true;
+	}
+	
+	public static void showImage(View v) {
+		Intent i = new Intent(v.getContext(),
+				ImageDisplayActivity.class);
+		ImageTag imgt = (ImageTag) v.getTag();
+		i.putExtra("url", imgt.getUrl());
+		v.getContext().startActivity(i);
+	}
+	
+	public void showMoreImages(View v) {
+		Intent i = new Intent(getApplicationContext(),
+				ImageSearchActivity.class);
+		i.putExtra("movie_name", (String) v.getTag());
+		startActivity(i);
 	}
 	
 	@Override

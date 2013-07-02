@@ -9,7 +9,7 @@
         android:id="@+id/toptext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:text="Top Text" 
         android:fontFamily="sans-serif-light"
@@ -20,8 +20,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:text="Bottom Text"
-        android:textSize="16dp"
+        android:textSize="14sp"
         android:fontFamily="sans-serif-light"
         android:color="#000000" />
+    <RelativeLayout 
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#A9A9A9"></RelativeLayout>
 
 </LinearLayout>

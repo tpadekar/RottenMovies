@@ -21,7 +21,7 @@ public class MovieData {
 	private int audienceRating;
 	private String description;
 	private String mpaaRating;
-	private int runtime;
+	private String runtime;
 	private ArrayList<String> genres = new ArrayList<String>();
 	private String poster;
 	private ArrayList<MovieCastMember> cast = new ArrayList<MovieCastMember>();
@@ -53,7 +53,7 @@ public class MovieData {
 				"audience_score");
 		this.description = movie.getString("synopsis");
 		this.mpaaRating = movie.getString("mpaa_rating");
-		this.runtime = movie.getInt("runtime");
+		this.runtime = movie.getString("runtime");
 		JSONArray genres = movie.getJSONArray("genres");
 		if (genres != null) {
 			int len = genres.length();
@@ -173,14 +173,14 @@ public class MovieData {
 	/**
 	 * @return the runtime
 	 */
-	public int getRuntime() {
+	public String getRuntime() {
 		return runtime;
 	}
 
 	/**
 	 * @param runtime the runtime to set
 	 */
-	public void setRuntime(int runtime) {
+	public void setRuntime(String runtime) {
 		this.runtime = runtime;
 	}
 
